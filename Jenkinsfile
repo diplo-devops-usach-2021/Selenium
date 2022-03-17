@@ -5,7 +5,7 @@ pipeline {
     stage('test'){
       steps{
         script{
-          println "mvn test"
+          sh "mvn test"
         }
       }
     }
