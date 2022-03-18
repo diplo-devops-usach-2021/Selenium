@@ -36,16 +36,16 @@ public class AppTest
         System.out.println("Se inicia el caso de prueba de busqueda en Google...");
         driver.navigate().to("https://www.google.com");
         WebElement searchbox = driver.findElement(By.name("q"));
-        searchbox.sendKeys("HandBook Devops");
+        searchbox.sendKeys("HandBook Devops Ripley");
         searchbox.submit();
         driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
-        WebElement libro = driver.findElement(By.xpath("//a[contains(@href,'buscalibre.cl/libro-the-devops-handbook')]"));
+        WebElement libro = driver.findElement(By.xpath("//*[contains(text(),'simple.ripley')]//ancestor::a[1]"));
         libro.click();
-        WebElement foto = driver.findElement(By.xpath("//img[contains(@title,'The Devops Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations (libro en inglés)')][1]"));
+        WebElement foto = driver.findElement(By.xpath("//img[contains(@src,'//ripleycl.imgix.net/https%3A%2F%2Fimages-na.ssl-images-amazon.com%2Fimages%2FI%2F51Z6uQ57ilL')][1]"));
         assertTrue(foto.isDisplayed());
         System.out.println("Assert - La imagen esta presente.");
-        WebElement comprar = driver.findElement(By.id("_"));
-        assertEquals("Sin Stock", comprar.getText());
+        WebElement comprar = driver.findElement(By.xpath("//button[contains(text(),'Agotado')]"));
+        assertEquals("Agotado", comprar.getText());
         System.out.println("Assert - No existe Stock de compra.");
     }
 
